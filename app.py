@@ -76,7 +76,7 @@ def make_static_tmp_dir():
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-
+    print(request)
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
@@ -165,9 +165,9 @@ def handle_text_message(event):
         line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'imagemap':
         pass
-    # else:
-    #     line_bot_api.reply_message(
-    #         event.reply_token, TextSendMessage(text=event.message.text))
+    else:
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=event.message.text))
 
 
 @handler.add(MessageEvent, message=LocationMessage)
