@@ -76,11 +76,13 @@ def make_static_tmp_dir():
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-    print(request)
+
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
+    print('header ' + signature)
+    print('body ' + body)
     # handle webhook body
     try:
         handler.handle(body, signature)
